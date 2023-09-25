@@ -2,7 +2,6 @@ import torch
 from pytorch_pretrained_biggan import (BigGAN, one_hot_from_names, truncated_noise_sample,
                                        save_as_images, display_in_terminal)
 import nltk
-import math
 from PIL import Image
 nltk.download('wordnet')
 # OPTIONAL: if you want to have more information on what's happening, activate the logger as follows
@@ -13,13 +12,10 @@ logging.basicConfig(level=logging.INFO)
 model = BigGAN.from_pretrained('biggan-deep-512')
 for i in range(1,100):
     # Prepare a input
-    truncation = math.ceil((i % 10)) / 10.0 + 0.01
-    if(truncation > 1):
-        truncation = 1
-    print(truncation)
+    truncation = 0.4
     classes = ['soap bubble', 'coffee', 'mushroom','tennis ball','daisy']
     class_vector = one_hot_from_names(classes, batch_size=len(classes))
-    noise_vector = truncated_noise_sample(truncation=truncation, batch_size=len(classes))
+    noise_vector = truncated_noise_sample(truncation=truncation, batch_size=len(classes), seed = i)
 
     # All in tensors
     noise_vector = torch.from_numpy(noise_vector)
