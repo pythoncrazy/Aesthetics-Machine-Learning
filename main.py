@@ -41,4 +41,4 @@ for i in range(1,100):
     display_in_terminal(output)
 
     # Save results as png images
-    save_as_images(output,file_name = "images//output_"+str(i)+ "_trunc_" + str(truncation))
+    save_as_images(output,file_name = "images/output_"+str(i)+ "_trunc_" + str(truncation))
