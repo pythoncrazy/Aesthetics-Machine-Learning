@@ -2,6 +2,7 @@ import torch
 from pytorch_pretrained_biggan import (BigGAN, one_hot_from_names, truncated_noise_sample,
                                        save_as_images, display_in_terminal)
 import nltk
+from PIL import Image
 nltk.download('wordnet')
 # OPTIONAL: if you want to have more information on what's happening, activate the logger as follows
 import logging
