@@ -17,8 +17,9 @@ for i in range(1,100):
     if(truncation > 1):
         truncation = 1
     print(truncation)
-    class_vector = one_hot_from_names(['soap bubble', 'coffee', 'mushroom'], batch_size=3)
-    noise_vector = truncated_noise_sample(truncation=truncation, batch_size=3)
+    classes = ['soap bubble', 'coffee', 'mushroom','tennis ball','daisy']
+    class_vector = one_hot_from_names(classes, batch_size=len(classes))
+    noise_vector = truncated_noise_sample(truncation=truncation, batch_size=len(classes))
 
     # All in tensors
     noise_vector = torch.from_numpy(noise_vector)
