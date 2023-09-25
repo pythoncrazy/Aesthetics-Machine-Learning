@@ -9,7 +9,7 @@ import logging
 logging.basicConfig(level=logging.INFO)
 
 # Load pre-trained model tokenizer (vocabulary)
-model = BigGAN.from_pretrained('biggan-deep-512')
+model = BigGAN.from_pretrained('biggan-deep-256')
 for i in range(1,100):
     # Prepare a input
     truncation = 0.4
