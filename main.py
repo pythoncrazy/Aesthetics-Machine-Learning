@@ -37,4 +37,4 @@ for i in range(0,100):
     display_in_terminal(output)
 
     # Save results as png images
-    save_as_images(output,file_name = "output_"+str(i)+ "_trunc_" + truncation)
+    save_as_images(output,file_name = "output_"+str(i)+ "_trunc_" + str(truncation))
