@@ -2,6 +2,7 @@ import torch
 from pytorch_pretrained_biggan import (BigGAN, one_hot_from_names, truncated_noise_sample,
                                        save_as_images, display_in_terminal)
 import nltk
+import math
 from PIL import Image
 nltk.download('wordnet')
 # OPTIONAL: if you want to have more information on what's happening, activate the logger as follows
@@ -10,9 +11,12 @@ logging.basicConfig(level=logging.INFO)
 
 # Load pre-trained model tokenizer (vocabulary)
 model = BigGAN.from_pretrained('biggan-deep-512')
-for i in range(0,100):
+for i in range(1,100):
     # Prepare a input
-    truncation = round((i % 10) / 10,1)
+    truncation = math.ceil((i % 10)) / 10.0 + 0.01
+    if(truncation > 1):
+        truncation = 1
+    print(truncation)
     class_vector = one_hot_from_names(['soap bubble', 'coffee', 'mushroom'], batch_size=3)
     noise_vector = truncated_noise_sample(truncation=truncation, batch_size=3)
 
@@ -37,4 +41,4 @@ for i in range(0,100):
     display_in_terminal(output)
 
     # Save results as png images
-    save_as_images(output,file_name = "output_"+str(i)+ "_trunc_" + str(truncation))
+    save_as_images(output,file_name = "images//output_"+str(i)+ "_trunc_" + str(truncation))
